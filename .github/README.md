@@ -21,6 +21,9 @@ python check_submission.py submissions/structural_final_v5/submission.csv
 
 | Path | What it is |
 | --- | --- |
+| `submissions/adapt_01/` | **Adaptation-round submission (team TwoStack)**: `submission.csv` (`094559b1…`) and `entry.zip` (`d1ff1a7d…`, 30.5 MB). 19.70/20 cross-validated. See `ADAPTATION_RESULTS.md` |
+| `ADAPTATION_RESULTS.md` | What changed in round two, and the overfitting checks for both rounds (holdouts, bootstrap, test-history backtest) |
+| `tools/verification/` | Scripts behind those checks |
 | `submissions/structural_final_v5/` | **Main-round submission (team TwoStack)**: `submission.csv` (SHA-256 `79c94fd0…`) and `entry.zip` (`a288aaa8…`, 30.5 MB). Same model and CSV as v2, plus offline NumPy wheels for Python 3.13 (x86-64 and ARM) so it also runs on a standard-library-only runner |
 | `submissions/structural_final_v4/` | Same as v5 plus a Python 3.12 wheel (46.9 MB ZIP, `ea1be2ce…`) |
 | `submissions/structural_final_v3/` | Same as v4 without the team ID in its README |

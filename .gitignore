@@ -8,3 +8,5 @@ __pycache__/
 # Duplicate copies of the wheels already inside entry.zip and vendor/
 submissions/*/source/wheels/
 submissions/*/extracted/wheels/
+# Organizer kits (contain organizer data)
+*-participants*.zip
