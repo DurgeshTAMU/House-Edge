@@ -21,7 +21,8 @@ python check_submission.py submissions/structural_final_v2/submission.csv
 
 | Path | What it is |
 | --- | --- |
-| `submissions/structural_final_v4/` | **Main-round entry to upload (team TwoStack)**: `submission.csv` (SHA-256 `79c94fd0…`) and `entry.zip` (`ea1be2ce…`). Same model and CSV as v2, plus offline NumPy wheels so it also runs on a standard-library-only Python 3.13 runner |
+| `submissions/structural_final_v5/` | **Main-round submission (team TwoStack)**: `submission.csv` (SHA-256 `79c94fd0…`) and `entry.zip` (`a288aaa8…`, 30.5 MB). Same model and CSV as v2, plus offline NumPy wheels for Python 3.13 (x86-64 and ARM) so it also runs on a standard-library-only runner |
+| `submissions/structural_final_v4/` | Same as v5 plus a Python 3.12 wheel (46.9 MB ZIP, `ea1be2ce…`) |
 | `submissions/structural_final_v3/` | Same as v4 without the team ID in its README |
 | `submissions/structural_final_v2/` | Previous packaging of the same entry (relies on organizers installing `requirements.txt`) |
 | `vendor/numpy-wheels/` | Offline Linux NumPy 2.3.4 wheels bundled into entries with `package_structural --wheels` |
