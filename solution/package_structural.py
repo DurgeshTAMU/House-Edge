@@ -16,10 +16,34 @@ from slot_forecasting.submission_contract import package_code
 
 PREDICT = '''"""Recreate the forecast CSV from the saved model. No training and no network."""
 import argparse
+import platform
+import sys
+import tempfile
+import zipfile
 from pathlib import Path
 
-from slot_forecasting.io import load_inputs, write_submission
-from solution import structural
+ROOT = Path(__file__).resolve().parent
+
+
+def ensure_numpy():
+    """Use an installed NumPy; otherwise unpack the matching bundled wheel into scratch space."""
+    try:
+        import numpy  # noqa: F401
+        return "installed"
+    except ImportError:
+        pass
+    tag = "cp%d%d" % sys.version_info[:2]
+    machine = platform.machine().lower().replace("amd64", "x86_64").replace("arm64", "aarch64")
+    for wheel in sorted((ROOT / "wheels").glob("numpy-*-%s-%s-*.whl" % (tag, tag))):
+        if not wheel.name.endswith("_%s.whl" % machine):
+            continue
+        target = Path(tempfile.mkdtemp(prefix="house_edge_numpy_"))
+        with zipfile.ZipFile(wheel) as archive:
+            archive.extractall(target)
+        sys.path.insert(0, str(target))
+        import numpy  # noqa: F401
+        return "bundled " + wheel.name
+    raise SystemExit("NumPy is not installed and no bundled wheel matches %s %s" % (tag, machine))
 
 
 def main():
@@ -27,7 +51,10 @@ def main():
     parser.add_argument("--data", type=Path, required=True)
     parser.add_argument("--out", type=Path, required=True)
     args = parser.parse_args()
-    root = Path(__file__).resolve().parent
+    print("NumPy:", ensure_numpy(), file=sys.stderr)
+    from slot_forecasting.io import load_inputs, write_submission
+    from solution import structural
+    root = ROOT
     params = structural.load_params(root / "params.json")
     queries, history = load_inputs(args.data / "test")
     write_submission(args.out, structural.predict(queries, history, params))
@@ -47,13 +74,16 @@ README = """# House Edge structural forecaster
 - Forecast file: submission.csv, uploaded separately
 - Forecast SHA-256: {csv_sha}
 - Code version: {version}
-- Environment: `python` in `reproduce.json`, with NumPy from `requirements.txt`
+- Environment: `python` in `reproduce.json` (Python 3.13 standard library), plus NumPy as below
 
 ## Setup
 
 - Python/runtime version: tested on Python 3.13.18 and 3.12.3 on Linux, and 3.11.9 on Windows
 - OS tested: Ubuntu under WSL2, and Windows 11
-- Dependencies: `requirements.txt` with exact versions (NumPy only)
+- Dependencies: NumPy only, pinned in `requirements.txt` ({numpy}). No setup step or network is needed:
+  if NumPy is not installed, `predict.py` unpacks the matching offline Linux wheel from `wheels/`
+  into a temporary folder under `/tmp` (about 55 MiB) and imports it from there.
+  Bundled wheels: {wheels}.
 - Required hardware: CPU only; two cores and under 16 GiB RAM. No GPU.
 - Put the released data at: `public/`, mounted at `/data` by the organizer rerun
 
@@ -105,7 +135,12 @@ def main():
     parser.add_argument("--out", type=Path, required=True)
     parser.add_argument("--team", default="as selected in the submission Form")
     parser.add_argument("--version", default=None)
+    parser.add_argument("--wheels", type=Path, nargs="*", default=[],
+                        help="Offline NumPy wheels (Linux) to bundle for a standard-library-only runner")
     args = parser.parse_args()
+    for wheel in args.wheels:
+        if not wheel.name.startswith("numpy-" + np.__version__ + "-") or wheel.suffix != ".whl":
+            raise SystemExit("Bundle only NumPy " + np.__version__ + " wheels: " + wheel.name)
     if args.out.exists():
         raise SystemExit("Use a new package folder")
     report = json.loads((args.run / "report.json").read_text(encoding="utf-8"))
@@ -119,8 +154,14 @@ def main():
         for name in names:
             shutil.copyfile(root / folder / name, source / folder / name)
     (source / "predict.py").write_text(PREDICT, encoding="utf-8")
+    if args.wheels:
+        (source / "wheels").mkdir()
+        for wheel in args.wheels:
+            shutil.copyfile(wheel, source / "wheels" / wheel.name)
     metadata = report["metadata"]
     (source / "README.md").write_text(README.format(
+        numpy="numpy==" + np.__version__,
+        wheels=", ".join("`" + wheel.name + "`" for wheel in args.wheels) or "none",
         team=args.team, round=metadata["round"], season=metadata["season_id"],
         csv_sha=hashlib.sha256((args.run / "submission.csv").read_bytes()).hexdigest(),
         version=args.version or args.out.name), encoding="utf-8")

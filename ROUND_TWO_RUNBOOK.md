@@ -14,8 +14,11 @@ python -m unittest tests.test_structural
 python -m solution.fit_structural --data public --out runs/adapt_01
 python check_submission.py runs/adapt_01/validation_cv.csv --split validation
 python check_submission.py runs/adapt_01/submission.csv
-python -m solution.package_structural --run runs/adapt_01 --data public --out submissions/adapt_01 --team "<team ID>"
+python -m solution.package_structural --run runs/adapt_01 --data public --out submissions/adapt_01 --team "<team ID>" --wheels vendor/numpy-wheels/numpy-2.3.4-cp313-cp313-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl vendor/numpy-wheels/numpy-2.3.4-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl vendor/numpy-wheels/numpy-2.3.4-cp313-cp313-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl
 ```
+
+Copy `vendor/` into the new kit too. The participant guide says the `python` runner has only the standard library, so
+`--wheels` bundles offline NumPy wheels that `predict.py` unpacks into `/tmp` when NumPy isn't installed (about 47 MB ZIP).
 
 The first line must print `adaptation 40`. Fitting takes about 3 minutes on a laptop CPU.
 Upload `submissions/adapt_01/submission.csv` and `submissions/adapt_01/entry.zip` under the adaptation Form.

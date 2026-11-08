@@ -1,0 +1,20 @@
+{
+  "csv_sha256": "79c94fd08eff17e080550d775e7a4e9a68176bd4209f36be0bdc1b5676514eb1",
+  "max_probability_difference_windows": 0.0,
+  "queries": 1536,
+  "unchanged_from_v2": [
+    "params.json",
+    "reproduce.json",
+    "requirements.txt",
+    "slot_forecasting/__init__.py",
+    "slot_forecasting/io.py",
+    "slot_forecasting/schema.py",
+    "solution/__init__.py",
+    "solution/features.py",
+    "solution/fit_structural.py",
+    "solution/structural.py",
+    "training-information.json"
+  ],
+  "zip_bytes": 46941076,
+  "zip_sha256": "dfd2c7278354208c7c1a06532cfa9592fb9281c1e10c474ea81bb0f201e48a28"
+}

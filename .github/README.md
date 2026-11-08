@@ -21,7 +21,9 @@ python check_submission.py submissions/structural_final_v2/submission.csv
 
 | Path | What it is |
 | --- | --- |
-| `submissions/structural_final_v2/` | **Main-round entry**: `submission.csv` (SHA-256 `79c94fd0…`) and `entry.zip` (`1f723a4f…`) |
+| `submissions/structural_final_v3/` | **Main-round entry to upload**: `submission.csv` (SHA-256 `79c94fd0…`) and `entry.zip` (`dfd2c727…`). Same model and CSV as v2, plus offline NumPy wheels so it also runs on a standard-library-only Python 3.13 runner |
+| `submissions/structural_final_v2/` | Previous packaging of the same entry (relies on organizers installing `requirements.txt`) |
+| `vendor/numpy-wheels/` | Offline Linux NumPy 2.3.4 wheels bundled into entries with `package_structural --wheels` |
 | `solution/structural.py` | The model: exact Bayesian inference over the simulator's hidden rules and change points |
 | `solution/fit_structural.py` | Fits everything from a kit's `public/` data: `python -m solution.fit_structural --data public --out runs/<name>` |
 | `solution/package_structural.py` | Builds and self-checks the CSV and code ZIP for a fitted run |

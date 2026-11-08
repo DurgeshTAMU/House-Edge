@@ -5,3 +5,6 @@ runs/
 _tmp_*.csv
 __pycache__/
 *.pyc
+# Duplicate copies of the wheels already inside entry.zip and vendor/
+submissions/*/source/wheels/
+submissions/*/extracted/wheels/
