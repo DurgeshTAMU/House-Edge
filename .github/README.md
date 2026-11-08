@@ -14,7 +14,7 @@ the root `README.md`.
 
 ```powershell
 python -m unittest discover -s tests -p "test_*.py"     # 34 tests, about 5 minutes
-python check_submission.py submissions/structural_final_v2/submission.csv
+python check_submission.py submissions/structural_final_v5/submission.csv
 ```
 
 ## Where things are
