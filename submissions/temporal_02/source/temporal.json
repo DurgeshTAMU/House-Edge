@@ -1,0 +1,17 @@
+{
+  "format": "house-edge-temporal-v1",
+  "settings": {
+    "half_life": 32,
+    "score_half_life": 64,
+    "categories": 2,
+    "strength": 8,
+    "size_strength": 8
+  },
+  "prior": [
+    0.5832625635595479,
+    0.19288346261401632,
+    0.14667642638107659,
+    0.0643608156941893,
+    0.012816731751169923
+  ]
+}

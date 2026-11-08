@@ -1,0 +1,38 @@
+{
+  "experiment_id": "temporal_cv_01",
+  "fold_manifest": "runs/train_cv_01/folds.json",
+  "incumbent_oof": "runs/train_cv_01/oof_incumbent.csv",
+  "incumbent_report": "runs/train_cv_01/report.json",
+  "incumbent_model": "submissions/portable_01/source/model.json",
+  "promotion_min_relative_gain": 0.005,
+  "promotion_min_folds_improved": 2,
+  "blend_temporal_weights": [
+    0.25,
+    0.5,
+    0.75
+  ],
+  "candidates": {
+    "binary_long": {
+      "half_life": 128,
+      "score_half_life": 128,
+      "categories": 2,
+      "strength": 8,
+      "size_strength": 8
+    },
+    "binary_short": {
+      "half_life": 32,
+      "score_half_life": 64,
+      "categories": 2,
+      "strength": 8,
+      "size_strength": 8
+    },
+    "ternary_long": {
+      "half_life": 128,
+      "score_half_life": 128,
+      "categories": 3,
+      "strength": 8,
+      "size_strength": 8
+    }
+  },
+  "selection": "Training-only observed-outcome Brier; fixed candidates; no audit tuning"
+}

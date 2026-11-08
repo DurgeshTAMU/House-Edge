@@ -1,0 +1,63 @@
+{
+  "environment": {
+    "numpy": "2.3.4",
+    "platform": "Windows-10-10.0.26300-SP0",
+    "python": "3.11.9"
+  },
+  "input_sha256": {
+    "public\\test\\history.csv": "7f3695122e0f0bf18fe603a6515d190d9c8578a8c702f11881befb40c636cf9e",
+    "public\\test\\queries.csv": "3d8065626e161fd3e7b988b735583a23d4c989eb64c8ae90f200b726c02e42b9",
+    "public\\test\\sample_submission.csv": "3f4f634d82c4229dbe234c7f65b963cfddabdb8ef36115002e4adfddaef7ba95",
+    "public\\train\\conditions.csv": "18891aa27d581b36ef7e7a18a7154f697d70054725cafec6a9c4a8665a5a4894",
+    "public\\train\\history.csv": "46a1e783a1b222dc2de33bc72259207e3d013135d1229af9669ffcd454116217",
+    "public\\train\\labels.csv": "f6b3a2ca73888b91bb9a38d0ca52f449062ce70534bef9776ad4f53fc713b46a",
+    "public\\train\\queries.csv": "96cbf59fe0b340981f3f2958dde3305162215ae911d0559d6f34764e74460846",
+    "public\\train\\sample_submission.csv": "1a8c90c3a66f4d01299de089e2aea2834d7e8bdfb963aa3ffabfa6e2b1f6c870",
+    "public\\validation\\conditions.csv": "ebcca7597bbdfa532c5254b92903e66522a710502a6f70689c3de311f75c29b1",
+    "public\\validation\\history.csv": "4b7ef4789750b7459eb085be3449ea8bd9dfd31441a928ad391a1376a44f8fe4",
+    "public\\validation\\labels.csv": "3881ed7e2451573f023d09d85b737cdc99a00b4b224eb020f371c02b9f9a91e2",
+    "public\\validation\\queries.csv": "168b7f6365a4f51084437c0071636b102ca3fb4bf0347b912778c51714fc48f2",
+    "public\\validation\\reference.csv": "bb396d9e4d20bf4004374f9ab781f41aaa8b730e61887c1969be534efeb1e6c6",
+    "public\\validation\\sample_submission.csv": "6fda54420c0573d025b0639a4b091fedce07689a83621292bf777351e853e48f",
+    "public\\validation\\targets.csv": "93b6e978f6818d2456dcb677fddb6ba243e864cef56e33a4bf94bde5ba4b51f3"
+  },
+  "metadata": {
+    "conditions": [
+      "stable",
+      "short_history",
+      "drift",
+      "shared_change"
+    ],
+    "counts_per_condition": {
+      "test": 48,
+      "train": 24,
+      "validation": 24
+    },
+    "history": "Machine-specific interactions, lags up to 8, missing observations and changing regimes.",
+    "machines_per_episode": 8,
+    "max_points": 60,
+    "mode": "event",
+    "reference": "Pooled, strength=20, fitted separately on this round's training observations.",
+    "round": "main",
+    "season_id": "5fffdc4d0c700bbf61c3f911",
+    "suite_version": "experimentation-suite-v3",
+    "target": "Next-spin probabilities for 0x, 1x, 2x, 5x, 20x.",
+    "test_policy": "Test targets, conditions and reference predictions stay private.",
+    "warning": "Public demo seeds are reconstructable; event seeds are private."
+  },
+  "pair_counts": {
+    "(1, 3)": 122,
+    "(2, 5)": 126,
+    "(4, 7)": 112
+  },
+  "validation_cross_validated": {
+    "conditions": {
+      "drift": 0.021891281972656943,
+      "shared_change": 0.022624430165992415,
+      "short_history": 0.06554154834618238,
+      "stable": 0.025715271764398404
+    },
+    "mean_loss_ratio": 0.033943133062307534,
+    "technical_points": 58.030270796705686
+  }
+}

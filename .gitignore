@@ -1,0 +1,7 @@
+# Organizer data: teammates use their own copy of the kit
+public/
+# Experiment outputs (regenerable with solution.fit_structural)
+runs/
+_tmp_*.csv
+__pycache__/
+*.pyc

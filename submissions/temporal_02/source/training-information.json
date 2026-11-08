@@ -1,0 +1,52 @@
+{
+  "chosen": "binary_short_w1.0",
+  "config": {
+    "blend_temporal_weights": [
+      0.25,
+      0.5,
+      0.75
+    ],
+    "candidates": {
+      "binary_long": {
+        "categories": 2,
+        "half_life": 128,
+        "score_half_life": 128,
+        "size_strength": 8,
+        "strength": 8
+      },
+      "binary_short": {
+        "categories": 2,
+        "half_life": 32,
+        "score_half_life": 64,
+        "size_strength": 8,
+        "strength": 8
+      },
+      "ternary_long": {
+        "categories": 3,
+        "half_life": 128,
+        "score_half_life": 128,
+        "size_strength": 8,
+        "strength": 8
+      }
+    },
+    "experiment_id": "temporal_cv_01",
+    "fold_manifest": "runs/train_cv_01/folds.json",
+    "incumbent_model": "submissions/portable_01/source/model.json",
+    "incumbent_oof": "runs/train_cv_01/oof_incumbent.csv",
+    "incumbent_report": "runs/train_cv_01/report.json",
+    "promotion_min_folds_improved": 2,
+    "promotion_min_relative_gain": 0.005,
+    "selection": "Training-only observed-outcome Brier; fixed candidates; no audit tuning"
+  },
+  "environment": {
+    "device": "CPU single-threaded temporal inference",
+    "platform": "Windows-11-10.0.26300-SP0",
+    "python": "3.13.5"
+  },
+  "input_sha256": {
+    "public\\train\\conditions.csv": "18891aa27d581b36ef7e7a18a7154f697d70054725cafec6a9c4a8665a5a4894",
+    "public\\train\\history.csv": "46a1e783a1b222dc2de33bc72259207e3d013135d1229af9669ffcd454116217",
+    "public\\train\\labels.csv": "f6b3a2ca73888b91bb9a38d0ca52f449062ce70534bef9776ad4f53fc713b46a",
+    "public\\train\\queries.csv": "96cbf59fe0b340981f3f2958dde3305162215ae911d0559d6f34764e74460846"
+  }
+}

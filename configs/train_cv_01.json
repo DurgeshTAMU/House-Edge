@@ -1,0 +1,39 @@
+{
+  "experiment_id": "train_cv_01",
+  "seed": 20261107,
+  "augment": 12,
+  "fold_manifest": "runs/diagnostics_01/train_cv_protocol.json",
+  "objective": "Equal-condition equal-episode terminal observed-outcome Brier loss, training episodes only",
+  "promotion_min_relative_gain": 0.005,
+  "promotion_min_folds_improved": 2,
+  "candidates": {
+    "incumbent": {
+      "max_iter": 100,
+      "max_leaf_nodes": 7,
+      "min_samples_leaf": 30,
+      "l2_regularization": 10,
+      "learning_rate": 0.05
+    },
+    "regularized": {
+      "max_iter": 180,
+      "max_leaf_nodes": 7,
+      "min_samples_leaf": 60,
+      "l2_regularization": 30,
+      "learning_rate": 0.05
+    },
+    "higher_capacity": {
+      "max_iter": 180,
+      "max_leaf_nodes": 15,
+      "min_samples_leaf": 40,
+      "l2_regularization": 20,
+      "learning_rate": 0.05
+    }
+  },
+  "rules": [
+    "Historical and terminal examples from held-out episodes never enter fitting.",
+    "All candidates use identical features, augmentation and folds.",
+    "Select before loading validation or test inputs.",
+    "Require 0.5% relative CV gain and improvement on at least two folds; otherwise retain incumbent.",
+    "Later validation score is descriptive, not independent audit or selection criterion."
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "python": "3.12.3",
+  "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+  "cpu_affinity": [
+    0,
+    1
+  ],
+  "site_packages_disabled": true,
+  "address_space_limit_gib": 16,
+  "seconds": 9.086841523,
+  "peak_rss_kib": 165756
+}
